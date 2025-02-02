@@ -1,0 +1,50 @@
+{% extends 'myauth/base.html' %}
+{% load cache %}
+
+{% block title %}
+    about user
+{% endblock %}
+
+{% block body %}
+    <h1>Profile {{ user.username }}:</h1>
+    {% if user.is_authenticated %}
+         Test {% now 'u' %}
+        {% cache 30 userinfo user.username %}
+
+
+          {% if form.errors %}
+               <div class="errors">
+                   <p>Пожалуйста, исправьте следующие ошибки:</p>
+
+                   {{ form.errors }}
+
+               </div>
+           {% endif %}
+
+        <h2>Details:</h2>
+        <p>Avatar:
+            {% if user.profile.avatar %}
+                <img width="150" height="150" src="{{ user.profile.avatar.url }}" alt="{{ user.profile.avatar.name }}">
+            {% else %}
+                <h3>No avatar</h3>
+            {% endif %}
+
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{ form.avatar }}
+
+        </p>
+        <p>Username: {{ user.username }}</p>
+        <p>Firstname: {{ user.first_name }}</p>
+        <p>Lastname: {{ user.last_name }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Bio: {{ user.profile.bio }} {{ form.bio }} </p>
+
+                <p><button type="submit">Change info</button></p>
+        </form>
+        {% endcache %}
+    {% else %}
+        <h2>User is anonymous</h2>
+    {% endif %}
+{% endblock %}

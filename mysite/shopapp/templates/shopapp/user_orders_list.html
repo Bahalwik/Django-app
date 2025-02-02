@@ -1,0 +1,63 @@
+{% extends 'shopapp/base.html' %}
+{% load cache %}
+
+{% block title %}
+    Orders list
+{% endblock %}
+
+
+
+{% block body %}
+
+    {% if user.is_authenticated %}
+
+        <h1>Profile {{ user }}:</h1>
+        <h2>Details:</h2>
+            <p>Avatar:
+                {% if user.profile.avatar %}
+                    <img width="150" height="150" src="{{ user.profile.avatar.url }}" alt="{{ user.profile.avatar.name }}">
+                {% else %}
+                    <h3>No avatar</h3>
+                {% endif %}
+
+            </p>
+            <p>Username: {{ user.username }}</p>
+            <p>Firstname: {{ user.first_name }}</p>
+            <p>Lastname: {{ user.last_name }}</p>
+            <p>Email: {{ user.email }}</p>
+            <p>Bio: {{ user.profile.bio }} {{ form.bio }} </p>
+
+
+        <h3>Orders {{ user.username }}:</h3>
+        {% cache 30 orderinfo user.username %}
+            <div>
+                {% if orders %}
+                    {% for order in orders %}
+                        <div>
+                            <a href="{% url 'shopapp:order_details' pk=order.pk %}"><strong>Order # {{ order.pk }}</strong></a>
+
+                        </div>
+                        <div>
+                            <p>Order by: {% firstof order.user.first_name order.user.username %}</p>
+                            <p>delivery_adress : {{ order.delivery_adress }}</p>
+                            <p>promocode: <code>{{ order.promocode }}</code></p>
+                        <div>
+                            Products in order:
+                        </div>
+                        <ul>
+                            {% for product in order.products.all %}
+                            <li>{{product.name}} for ({{ product.price }})</li>
+                                {% endfor %}
+                        </ul>
+
+                        </div>
+
+                    {% endfor %}
+                {% else %}
+                No orders
+                {% endif %}
+            </div>
+        {% endcache %}
+{% endif %}
+
+{% endblock %}

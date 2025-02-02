@@ -1,0 +1,65 @@
+{% extends 'shopapp/base.html' %}
+
+{% load i18n %}
+
+{% block title %}
+    {{ product.name }}
+{% endblock %}
+
+
+{% block body %}
+    <h1>{% translate "Product" %} <strong>{{ product.name }}</strong></h1>
+    <div>{% translate "Description" %} <strong><em>{{ product.description }}</em></strong></div>
+    <div>{% translate "Price" %} <strong>{{ product.price }}</strong></div>
+    <div>{% translate "Discount" %} <strong>{{ product.discount }}</strong></div>
+    <div>{% translate "Archived" %} <strong>{{ product.archived }}</strong></div>
+    <div>{% translate "Created_by" %} <strong>{{ product.created_by }}</strong></div>
+
+
+    {% if product.preview %}
+        <img width="150" height="150" src="{{ product.preview.url }}" alt="{{ product.preview.name }}">
+    {% endif %}
+    <h3>
+        {% translate "Images" context "text img" %}:
+
+        {% blocktranslate count images_count=product.images.all|length %}
+            <h3>There is only one image.</h3>
+            {% plural %}
+            <h3>There are {{ images_count }} images.</h3>
+        {% endblocktranslate %}
+
+        <div>
+            {% for img in product.images.all %}
+            <div>
+                <img width="150" height="150" src="{{ img.image.url }}" alt="{{ img.image.name }}">
+                <div>
+                    {{ img.description }}
+                </div>
+            </div>
+            {% empty %}
+                <div>
+                   {% translate "No images uploaded yet" %}
+                </div>
+            {% endfor %}
+        </div>
+    </h3>
+    <br>
+     {% if perms.shopapp.change_product %}
+        <div>
+            <a href="{% url 'shopapp:product_update' pk=product.pk %}">{% translate "Go to product_update" %}</a>
+        </div>
+    {% endif %}
+    <br>
+    <div>
+        <a href="{% url 'shopapp:product_delete' pk=product.pk %}">{% translate "Archive product" %}</a>
+    </div>
+    <br>
+    <div>
+        {% url 'shopapp:products_list' as list %}
+        {% blocktranslate %}
+            <a href="{{ list }}">Back to products list</a>
+        {% endblocktranslate %}
+
+    </div>
+{% endblock %}
+

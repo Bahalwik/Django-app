@@ -1,0 +1,29 @@
+{% extends "shopapp/base.html" %}
+
+{% block title %}
+    Update order {{ order.pk }}
+{% endblock %}
+
+{% block body %}
+    <h1>Update order #{{ order.pk }}</h1>
+
+    <div>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit">
+                Update order
+            </button>
+        </form>
+    </div>
+
+    <div>
+        <a href="{% url 'shopapp:orders_list' %}">
+            Back to orders_list
+        </a>
+
+    </div>
+
+{% endblock %}
