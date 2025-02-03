@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-
+from os import getenv
+import logging.config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
@@ -21,20 +22,27 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+DATABASE_DIR = BASE_DIR / "database"
+DATABASE_DIR.mkdir(exist_ok=True)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--j(9nlmd0y#$g@tf2wi&(hg75n1+z@4e3mgmu%91y*q8jhg7_s'
+
+SECRET_KEY = getenv(
+    "DJANGO_SECRET_KEY",
+    'django-insecure--j(9nlmd0y#$g@tf2wi&(hg75n1+z@4e3mgmu%91y*q8jhg7_s',
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = getenv("DJANGO_DEBUG", "0") == '1'
 
 ALLOWED_HOSTS = [
     "0.0.0.0",
     "127.0.0.1",
-]
+] + getenv("DJANGO_ALLOWED_HOSTS", '').split(',')
+
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
@@ -123,7 +131,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': DATABASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -238,12 +246,39 @@ SPECTACULAR_SETTINGS = {
 
 #LOGFILE_NAME = BASE_DIR / "log.txt"
 
+
 LOGFILE_SIZE = 1 * 1024 * 1024
 LOGFILE_COUNT = 3
+
 
 LOGFILE_NAME = os.path.join(BASE_DIR, "logs", "log.txt")
 
 
+LOGLEVEL = getenv("DJANGO_LOGLEVEL", "info").upper()
+
+logging.config.dictConfig({
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "console": {
+            "format": "%(asctime)s %(levelname)s [%(name)s: %(lineno)s] %(module)s %(message)s",
+        }
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "console",
+        },
+    },
+    "loggers": {
+        "": {
+            "level" : LOGLEVEL,
+            "handlers": [
+                "console",
+            ],
+        },
+    },
+})
 
 # LOGGING = {
 #     "version": 1,
@@ -276,36 +311,36 @@ LOGFILE_NAME = os.path.join(BASE_DIR, "logs", "log.txt")
 #     },
 # }
 
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "verbose": {
-            "format": "%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-        }
-    },
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
-            "formatter": "verbose",
-        },
-        "logfile": {
-            "class": "logging.handlers.RotatingFileHandler",
-            "filename": LOGFILE_NAME,
-            "maxBytes": LOGFILE_SIZE,
-            "backupCount": LOGFILE_COUNT,
-            "formatter": "verbose",
-            "encoding": "utf-8",
-            "mode": "a",  # Добавляем режим append
-            "delay": True,  # Создаем файл только при первой записи
-        }
-    },
-    "root": {
-        "handlers": [
-            "console",
-            "logfile",
-            ],
-
-        "level": "INFO",
-    },
-}
+# LOGGING = {
+#     "version": 1,
+#     "disable_existing_loggers": False,
+#     "formatters": {
+#         "verbose": {
+#             "format": "%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+#         }
+#     },
+#     "handlers": {
+#         "console": {
+#             "class": "logging.StreamHandler",
+#             "formatter": "verbose",
+#         },
+#         "logfile": {
+#             "class": "logging.handlers.RotatingFileHandler",
+#             "filename": LOGFILE_NAME,
+#             "maxBytes": LOGFILE_SIZE,
+#             "backupCount": LOGFILE_COUNT,
+#             "formatter": "verbose",
+#             "encoding": "utf-8",
+#             "mode": "a",  # Добавляем режим append
+#             "delay": True,  # Создаем файл только при первой записи
+#         }
+#     },
+#     "root": {
+#         "handlers": [
+#             "console",
+#             "logfile",
+#             ],
+#
+#         "level": "INFO",
+#     },
+# }

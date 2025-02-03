@@ -4657,3 +4657,80 @@ TypeError: UserOrdersDataExportView.get() got an unexpected keyword argument 'us
 2025-02-02 14:51:07,417 [WARNING] django.request: Not Found: /ru/accounts/
 2025-02-02 14:51:13,648 [WARNING] django.request: Not Found: /ru/accounts/user
 2025-02-02 14:51:16,650 [WARNING] django.request: Not Found: /ru/accounts/user/1
+2025-02-02 15:10:01,671 [INFO] django.utils.autoreload: C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\mysite\mysite\wsgi.py changed, reloading.
+2025-02-02 15:10:02,146 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2025-02-02 15:12:31,113 [INFO] django.utils.autoreload: C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\mysite\mysite\settings.py changed, reloading.
+2025-02-02 15:12:31,574 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
+2025-02-02 16:54:45,997 [ERROR] django.security.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\sentry_sdk\integrations\django\middleware.py", line 177, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+2025-02-02 16:54:46,061 [WARNING] django.request: Bad Request: /
+2025-02-02 16:54:46,245 [ERROR] django.security.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\sentry_sdk\integrations\django\middleware.py", line 177, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+2025-02-02 16:54:46,259 [WARNING] django.request: Bad Request: /favicon.ico
+2025-02-02 17:02:15,288 [ERROR] django.security.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\sentry_sdk\integrations\django\middleware.py", line 177, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+2025-02-02 17:02:15,314 [WARNING] django.request: Bad Request: /
+2025-02-02 17:02:15,544 [ERROR] django.security.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\sentry_sdk\integrations\django\middleware.py", line 177, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\django\utils\deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Александр\PycharmProjects\python_django\python_django#13\permissions\venv\Lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+2025-02-02 17:02:15,556 [WARNING] django.request: Bad Request: /favicon.ico
+2025-02-02 17:02:44,014 [INFO] django.utils.autoreload: Watching for file changes with StatReloader
