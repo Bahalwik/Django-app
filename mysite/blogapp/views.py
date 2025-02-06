@@ -18,4 +18,4 @@ class ArticleListView(ListView):
 class ArticleCreateView(CreateView):
     model = Article
     form_class = ArticlesForm
-    success_url = reverse_lazy("new_blogapp:articles_list")
+    success_url = reverse_lazy("blogapp:articles_list")
