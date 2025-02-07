@@ -36,7 +36,7 @@ SECRET_KEY = getenv(
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = getenv("DJANGO_DEBUG", "1") == '1'
+DEBUG = getenv("DJANGO_DEBUG", "0") == '1'
 
 ALLOWED_HOSTS = [
     "0.0.0.0",
@@ -131,7 +131,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3', #DATABASE_DIR /
+        'NAME': DATABASE_DIR / 'db.sqlite3',
     }
 }
 
