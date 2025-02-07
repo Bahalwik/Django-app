@@ -2,18 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <title>
-        {% block title %}
-            Base title
-        {% endblock %}
-
-
+        {% block title %}Base title{% endblock %}
     </title>
 
+    <style>
+
+          footer{
+            padding: 10px;
+          }
+
+          .fixed-container{
+            max-width: 1000px;
+            height: 100%;
+            margin-left: auto;
+            margin-right: auto;
+
+  }
+          .test1 {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            align-items: center;
+          }
+
+          .test2 {
+            display: flex;
+            flex-direction: column;
+          }
+
+
+          .test2 > * {
+            margin-bottom: 10px;
+          }
+
+          .test1 > div > a {
+            margin-right: 5px;
+          }
+    </style>
+
 </head>
+
 <body>
+    {% include 'shopapp/footer.html' %}
      {% block body %}
-        Base body
+
+
      {% endblock %}
 
 </body>
